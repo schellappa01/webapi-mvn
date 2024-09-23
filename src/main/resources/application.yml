@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: webapi-mvn
+server:
+    port: 8090
