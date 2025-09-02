@@ -3,3 +3,32 @@ spring:
     name: webapi-mvn
 server:
     port: 8090
+monitoring:
+  # Application Performance Monitoring
+  datadog:
+    api-url: https://api.datadoghq.com/api/v1
+    intake-url: https://http-intake.logs.datadoghq.com/v1/input/<API_KEY>
+  newrelic:
+    collector-url: https://collector.newrelic.com
+    insights-url: https://insights-collector.newrelic.com/v1/accounts/<ACCOUNT_ID>
+  splunk:
+    hec-url: https://splunk.company.local:8088/services/collector
+
+# ===================================================================
+# 2️⃣ INTERNAL LINKS / URLs (Intra-network Communication)
+# ===================================================================
+internal:
+  microservices:
+    # Core Business Services
+    user-service:
+      url: http://user-service.default.svc.cluster.local:8080
+      health-url: http://user-service.default.svc.cluster.local:8080/actuator/health
+    order-service:
+      url: http://order-service.default.svc.cluster.local:8081
+      graphql-url: http://order-service.default.svc.cluster.local:8081/graphql
+    inventory-service:
+      url: http://inventory-service.default.svc.cluster.local:8082
+      grpc-url: grpc://inventory-service.default.svc.cluster.local:9090
+    payment-service:
+      url: http://payment-service.default.svc.cluster.local:8083
+      websocket-url: ws://payment-service.default.svc.cluster.local:8083/ws
